@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="container">
+
+    </div>
+    <script src="../mustache/dist/mustache.global.js"></script>
+    <script>
+      const {SSG_TemplateEngine} = Mustache
+      const template = `
+        <div>
+          <ol>
+              {{#phone}}
+              <li class="name">
+                手机的品牌是{{name}}
+                <ol>
+                  手机的价格是{{price}}
+                </ol>
+              </li>
+            {{/phone}}
+          </ol>
+        </div>
+      `
+      const data = {
+        phone: [
+          {name: '小米',price: 1999},
+          {name: 'iPhone',price: 3999},
+          {name: '华为',price: 4999},
+        ]
+      }
+      const content = SSG_TemplateEngine.render(template, data)
+      container.innerHTML = content
+    </script>
+  </body>
+</html>

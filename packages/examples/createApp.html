@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">110</div>
+    <script src="../runtime-dom/dist/runtime-dom.global.js"></script>
+    <script>
+      let { createApp, h, reactive, ref,onBeforeMount,onMounted,onBeforeUpdate,onUpdated } = VueRuntimeDom
+      const app = {
+        setup() {
+          const a = ref(1234)
+          onBeforeMount(() => {
+            console.log('我在加载前执行的');
+          })
+          onMounted(() => {
+            console.log('我在加载后执行的');
+          })
+          onBeforeUpdate(() => {
+            console.log('我在更新前执行的');
+          })
+          onUpdated(() => {
+            console.log('我在更新后执行的');
+          })
+          setTimeout(() => {
+            a.value++
+          },2000)
+          return (b) => {
+            return h('ul',[h('li','西瓜'),h('li','香蕉'),h('li','菠萝'),h('li',[h('p','测试'),h('p','测试2')])])
+          }
+        }
+      }
+      createApp('ul',{},[h('li','西瓜'),h('li','香蕉'),h('li','菠萝'),h('li',[h('p','测试'),h('p','测试2')])]).mount('#app')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+  </div>
+  <script src="../reactivity/dist/reactivity.global.js"></script>
+  <script>
+    const { reactive, effect,toRefs} = VueReactivity
+    const a = {name:1,age:18}
+    const {name,age} = toRefs(a)
+    effect(() => {
+      app.innerHTML = name.value
+      app.innerHTML += age.value
+    })
+    setTimeout(()=> {
+      name.value = 2
+    },1000)
+  </script>
+</body>
+</html>
